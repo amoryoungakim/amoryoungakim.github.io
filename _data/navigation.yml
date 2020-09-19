@@ -1,7 +1,7 @@
 # main links
 main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  # - title: "Quick-Start Guide"
+  #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
@@ -10,3 +10,25 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+  
+docs:
+  - title: Machine Learning
+    children:
+      - title: "Regression"
+        url: /docs/quick-start-guide/
+      - title: "Clasiffication"
+        url: /docs/structure/
+      - title: "Clustering"
+        url: /docs/installation/
+      - title: "Others"
+        url: /docs/upgrading/
+        
+
+  - title: Languages
+    children:
+      - title: "Python"
+        url: /docs/quick-start-guide/
+      - title: "SQL"
+        url: /docs/structure/
+      - title: "R"
+        url: /docs/installation/
