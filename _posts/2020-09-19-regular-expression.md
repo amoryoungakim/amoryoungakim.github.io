@@ -7,7 +7,7 @@ categories: Python
 
 데이터를 다루면서 정규표현식(Regular Expression)을 가장 유용하게 썼던 경험은 제품 모델명을 필터링 할 때였다. 알파벳, 숫자, -혹은 \_로 이루어진 모델명은 모델 종류에 따라 나름의 패턴이 있다. 예를 들어 여성복 TIME의 경우 아래와 같은 모델명이 있다.
 
-''' **TM**2A9**WBL**742W_**BK** '''
+` **TM**2A9**WBL**742W_**BK** `
 
 TM은 TIME 브랜드 명, WBL은 여성 블라우스라는 뜻, 마지막 BK는 BLACK 색상을 의미한다.
 
@@ -44,13 +44,12 @@ for s in time_string:
   print(time_pattern.match(s))
 ```
 
-결과는 아래와 같다.
-
+결과는
 ``` 
 <re.Match object; span=(0, 16), match='TM2A4WSC61WP3_BK'>
-None <br>
-None <br>
-None <br>
+None
+None
+None
 ```
 
 1번째 제품명은 패턴과 일치했다. 2번째 제품명은 'TM'과 '\_BK' 사이에 알파벳 혹은 숫자가 12개 오기 때문에 None이 리턴되었다. 3번째 제품명은 '\_OR'로 끝나기 때문에 None이 리턴되었다. 마지막 5번째 제품명은 모델명에 '\_'가 없어서 None이 리턴되었다.
