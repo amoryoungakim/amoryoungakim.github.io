@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "default" # "default", "air", "aqua", "contrast", "da
 
 # Site Settings
 locale                   : "en-US"
-title                    : "스티키 레코"
+title                    : " 스티키 레코"
 title_separator          : "-"
 subtitle                 : "S T I C K Y R E C O"
 name                     : #"x"
@@ -95,7 +95,7 @@ analytics:
 author:
   name             : #"yakim"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "머신러닝을 공부하는<br>마케터입니다.<br>기호와 패턴 읽는 것을<br>좋아합니다."
+  bio              : "머신러닝을 공부하는 마케터입니다. 기호와 패턴 읽는 것을 좋아합니다."
   email            : "amoryounga.kim@gmail.com"
   location         : "South Korea"
   links:
