@@ -116,13 +116,14 @@ author:
       # url: "https://github.com/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      # url: "https://instagram.com/"
 
 sidebar:
-  - title: "Title"
-    image: http://placehold.it/350x250
-    image_alt: "image"
-    text: "Some text here."
+
+#   - title: "Title"
+#     image: http://placehold.it/350x250
+#     image_alt: "image"
+#     text: "Some text here."
   - title: "Another Title"
     text: "More text here."
 
