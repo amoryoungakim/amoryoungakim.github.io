@@ -1,6 +1,7 @@
 ---
 title: "파이썬 정규표현식 (Python Regular Expressions)"
 date: 2020-09-19 08:26:28 -0400
+permalink: '/regex/'
 categories: Python
 ---
 
