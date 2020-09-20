@@ -93,15 +93,15 @@ analytics:
 
 # Site Author
 author:
-  name             : "yakim"
+  name             : #"yakim"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : #"머신러닝을 공부하는 마케터입니다."
-  location         : "South Korea"
   email            : "amoryounga.kim@gmail.com"
+  location         : "South Korea"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "amoryounga.kim@gmail.com"
+      # url: "amoryounga.kim@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -116,7 +116,7 @@ author:
       # url: "https://github.com/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://instagram.com/"
 
 sidebar:
   - title: "Title"
