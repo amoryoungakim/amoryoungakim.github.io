@@ -134,14 +134,14 @@ print(example_pattern)
 import re  
 
 # 제품명 목록
-time_string = ['TM2A4WSC61WP3_BK', 'TM2A4WSC61WP33_BK', 'TM2A4WSC61WP3_OR', 'TM2A4WSC61WP3BK']
+model_name = ['TM2A4WSC61WP3_BK', 'TM2A4WSC61WP33_BK', 'TM2A4WSC61WP3_OR', 'TM2A4WSC61WP3BK']
 
 # 찾고자 하는 패턴을 정의해서 time_pattern 이라는 이름으로 저장한다.
-time_pattern = re.compile('TM[a-zA-Z0-9]{10,11}_BK')
+model_pattern = re.compile('TM[a-zA-Z0-9]{10,11}_BK')
 
 # time_string의 4개 모델명을 time_pattern에 대입해보고 일치하면 그 결과를, 아니면 None을 반환한다.
-for s in time_string:
-  print(time_pattern.match(s))
+for s in model_name:
+  print(model_pattern.match(s))
   
 # result
 <re.Match object; span=(0, 16), match='TM2A4WSC61WP3_BK'>
@@ -157,11 +157,11 @@ None
 ```python
 # 괄호로 그룹화 하는 예
 s = 'TM2A4WSC61WP3_BK'
-time_pattern = re.match('\w{5}([A-Z]{3})\w+_([A-Z]{2})', s)
-print(time_pattern.group())
-print(time_pattern.group(0))
-print(time_pattern.group(1))
-print(time_pattern.group(2))
+model_pattern = re.match('\w{5}([A-Z]{3})\w+_([A-Z]{2})', s)
+print(model_pattern.group())
+print(model_pattern.group(0))
+print(model_pattern.group(1))
+print(model_pattern.group(2))
 
 # result
 TM2A4WSC61WP3_BK
@@ -177,9 +177,9 @@ BK
 ```python
 # ?P<name>으로 그룹에 이름 부여하기
 s = 'TM2A4WSC61WP3_BK'
-time_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
-print(time_pattern.group('category'))
-print(time_pattern.group('color'))
+model_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
+print(model_pattern.group('category'))
+print(model_pattern.group('color'))
 
 # result
 WSC
@@ -190,12 +190,12 @@ BK
 
 ```python
 s = 'TM2A4WSC61WP3_BK'
-time_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
+model_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
 
 # 첫번째 패턴 WSC에 해당하는 start, end, span 위치 찾기
-print(time_pattern.start(1))
-print(time_pattern.end(1))
-print(time_pattern.span(1))
+print(model_pattern.start(1))
+print(model_pattern.end(1))
+print(model_pattern.span(1))
 
 # result
 5
