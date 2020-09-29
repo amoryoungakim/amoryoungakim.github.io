@@ -79,7 +79,7 @@ print(digit_pattern)
 <re.Match object; span=(0, 10), match='832-38-184'>
 ```
 
-정규표현식(Regular Expression) 해석 :<br>
+설명 :<br>
 `\d{3}` 숫자 3개가 와야 함, `-*` 하이픈은 있어도 되고 없어도 됨
 
 ```python
@@ -92,7 +92,7 @@ print(name_pattern)
 <re.Match object; span=(0, 21), match='Rich Salamander Vuduc'>
 ```
 
-정규표현식(Regular Expression) 해석 :<br>
+설명 :<br>
 `^` string이 바로 뒤에 이어지는 패턴으로 시작해야 함 `[a-zA-Z]+` First name은 알파벳이 1개 이상(+) `\s+` First name 뒤에 공백이 1개 이상(+) 올 수 있음 `([a-zA-Z]+\s)` Middle name은 알파벳 1개 이상(+) 그리고 공백이 1개 올 수 있음 `?` Middle name은 있어도 되고 없어도 됨 `[a-zA-Z]+` Last name은 알파벳이 1개 이상(+) 임 `$` string이 바로 앞의 패턴으로 끝나야 함
 
 ```python
@@ -105,7 +105,7 @@ print(email_pattern)
 <re.Match object; span=(0, 20), match='test_email@gmail.com'>
 ```
 
-정규표현식(Regular Expression) 해석 :<br>
+설명 :<br>
 `^[a-zA-Z]` 알파벳으로 시작해야 함 `[a-zA-Z0-9.\-_]*` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 0 또는 1개 이상(\*) 올 수 있음 `@` @ 문자가 와야 함 `[a-zA-Z0-9.\-_]+` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 1개 이상(+) 와야 함 `[a-zA-z]$` 알파벳으로 끝나야 함
 
 ```python
@@ -118,7 +118,7 @@ print(example_pattern)
 <re.Match object; span=(0, 11), match='new_ep_f014'>
 ```
 
-정규표현식(Regular Expression) 해석 :<br>
+설명 :<br>
 `new` new로 시작 `_?` 언더바는 있어도 되고 없어도 됨 `[a-z]+` 알파벳 소문자가 1개 이상(+) 옴 `[f|m]` f 혹은 m 문자가 와야 함 `\d{2,4}` 숫자가 2개 이상 4개 이하 와야 함
 
 
@@ -268,3 +268,15 @@ $7.46
 (44, 49)
 ```
 
+#### 5. Sub
+
+특정 패턴을 갖는 문자열을 찾은 다음, 다른 문자로 바꾸고 싶다면 `sub`을 쓰면 된다.
+
+```python
+s = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
+price_pattern = re.sub('\$\d[.]\d{2}','$TBD', s)
+print(price_pattern)
+
+# result
+With Deal:	$TBD + No Import Fees Deposit & $TBD Shipping to Korea, Republic of
+```
