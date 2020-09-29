@@ -77,13 +77,14 @@ s = '832-38-1847'
 digit_pattern = re.match('\d{3}-*\d{2}-*\d{3}', s)
 ```
 
-* \\d{3} : 숫자 3개가 와야 함
-* -* : 하이픈은 있어도 되고 없어도 됨
+    * \\d{3} : 숫자 3개가 와야 함
+    * -* : 하이픈은 있어도 되고 없어도 됨
 
 ```python
 # Name
 s = 'Rich Salamander Vuduc'
 name_pattern = re.match('^[a-zA-Z]+\s+([a-zA-Z]+\s)?[a-zA-Z]+$', s)
+print(name_pattern)
 ```
 
 * ^ : string이 바로 뒤에 이어지는 패턴으로 시작해야 함
@@ -98,19 +99,21 @@ name_pattern = re.match('^[a-zA-Z]+\s+([a-zA-Z]+\s)?[a-zA-Z]+$', s)
 # Email
 s = 'test_email@gmail.com'
 email_pattern = re.match('^[a-zA-Z][a-zA-Z0-9.\-_+]*@[a-zA-Z0-9.\-_]+[a-zA-z]$', s)
+print(email_pattern)
 ```
 
-* ^\[a-zA-Z] : 알파벳으로 시작해야 함
-* \[a-zA-Z0-9.\\-\_]* : 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 0 또는 1개 이상(\*) 올 수 있음
-* @ : @ 문자가 와야 함
-* \[a-zA-Z0-9.\\-\_]+ : 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 1개 이상(+) 와야 함
-* \[a-zA-z]$ : 알파벳으로 끝나야 함
+    * ^\[a-zA-Z] : 알파벳으로 시작해야 함
+    * \[a-zA-Z0-9.\\-\_]* : 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 0 또는 1개 이상(\*) 올 수 있음
+    * @ : @ 문자가 와야 함
+    * \[a-zA-Z0-9.\\-\_]+ : 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 1개 이상(+) 와야 함
+    * \[a-zA-z]$ : 알파벳으로 끝나야 함
 
 
 ```python
 # Example
 s = 'new_ep_f014'
-xample_pattern = re.match('new_?[a-z]+_[f|m]\d{2,4}', s)
+example_pattern = re.match('new_?[a-z]+_[f|m]\d{2,4}', s)
+print(example_pattern)
 ```
 
 * new : new로 시작
@@ -122,7 +125,7 @@ xample_pattern = re.match('new_?[a-z]+_[f|m]\d{2,4}', s)
 
 ### 정규표현식(Regular Expression) 활용 메소드
 
-#### match
+#### 1. match
 
 ```python
 # re library를 호출한다.
@@ -149,4 +152,125 @@ None
 
 1번째 제품명은 패턴과 일치했다. 2번째 제품명은 'TM'과 '\_BK' 사이에 알파벳 혹은 숫자가 12개 오기 때문에 None이 리턴되었다. 3번째 제품명은 '\_OR'로 끝나기 때문에 None이 리턴되었다. 마지막 5번째 제품명은 모델명에 '\_'가 없어서 None이 리턴되었다.
 
-시작을 타나태는 ^ 끝을 나타내는 $
+모델명 `'TM2A4WSC61WP3_BK'`에서 품목(WSC)과 색상(BK)만 추출하고 싶다면 괄호를 사용해 그룹화 할 수 있다.
+
+```python
+s = 'TM2A4WSC61WP3_BK'
+time_pattern = re.match('\w{5}([A-Z]{3})\w+_([A-Z]{2})', s)
+print(time_pattern.group())
+print(time_pattern.group(0))
+print(time_pattern.group(1))
+print(time_pattern.group(2))
+```
+
+결과
+```
+TM2A4WSC61WP3_BK
+TM2A4WSC61WP3_BK
+WSC
+BK
+```
+
+`group()`과 `group(0)`는 패턴과 일치한 전체 문자열을 반환하고 `group(1)`은 첫번째 괄호에 해당하는 문자열, `group(2)`는 두번째 괄호에 해당하는 문자열을 반환한다.
+
+괄호 안에 `?P<name>`을 써서 그룹에 이름을 지정해 줄 수도 있다.
+
+```python
+s = 'TM2A4WSC61WP3_BK'
+time_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
+print(time_pattern.group('category'))
+print(time_pattern.group('color'))
+```
+결과
+```
+WSC
+BK
+```
+`group()` 외에도 `start(), end(), span()`을 써서 일치하는 패턴의 위치를 파악할 수 있다.
+
+```python
+s = 'TM2A4WSC61WP3_BK'
+time_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
+
+# 첫번째 패턴 WSC에 해당하는 start, end, span 위치 찾기
+print(time_pattern.start(1))
+print(time_pattern.end(1))
+print(time_pattern.span(1))
+```
+결과
+
+```
+5
+8
+(5, 8)
+```
+
+#### 2. Search
+
+문자열의 처음과 끝이 모두 정규표현식(Regular Expression)과 일치해야만 하는 `match`와는 달리 `search`는 전체 문자열에서 원하는 패턴과 일치하는 부분을 골라준다.
+
+```pythons = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
+price_pattern = re.search('\$\d[.]\d{2}', s)
+print(price_pattern)
+print(price_pattern.group())
+print(price_pattern.start())
+print(price_pattern.end())
+print(price_pattern.span())
+```
+
+결과
+
+```
+<re.Match object; span=(11, 16), match='$5.94'>
+$5.94
+11
+16
+(11, 16)
+```
+
+#### 3. findall
+
+패턴에 해당하는 모든 문자열을 찾아 list로 반환한다.
+
+```python
+s = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
+price_pattern = re.findall('\$\d[.]\d{2}', s)
+print(price_pattern)
+```
+결과
+```
+['$5.94', '$7.46']
+```
+
+#### 4. finditer
+
+만약 패턴에 해당하는 모든 문자열을 찾아, `group(), start(), end(), span()` 메소드로 더 많은 정보를 얻고 싶다면 `finditer`를 써야 한다.
+
+```python
+s = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
+price_pattern = re.finditer('\$\d[.]\d{2}', s)
+
+for m in price_pattern:
+    print("---------------")
+    print(m)
+    print(m.group())
+    print(m.start())
+    print(m.end())
+    print(m.span())
+```
+결과
+```
+---------------
+<re.Match object; span=(11, 16), match='$5.94'>
+$5.94
+11
+16
+(11, 16)
+---------------
+<re.Match object; span=(44, 49), match='$7.46'>
+$7.46
+44
+49
+(44, 49)
+```
+
