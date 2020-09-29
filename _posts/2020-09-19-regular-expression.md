@@ -42,7 +42,7 @@ Python 문자열(string)을 작성할 때 작은 따옴표로 감싸듯이 정�
 | \\w | 알파벳 전체, 숫자 전체, 언더바 (\[a-zA-Z0-9_]와 같은 표현)| 
 | \\s | 공백                                                 |
 
-<br><br>
+<br>
 **반복 회수**
 
 |  기호  |       의미       | 예시        | 비고                 |
@@ -54,7 +54,7 @@ Python 문자열(string)을 작성할 때 작은 따옴표로 감싸듯이 정�
 | {m,} | m회 이상          | go{2,}gle | google, gooogle, goooogle 과 일치  |
 | {m,n} | m회 이상 n회 이하 | go{2,3}gle | google, gooogle 과 일치  |
 
-<br><br>
+<br>
 **기타**
 
 |기호| 의미                                                   |
@@ -64,7 +64,7 @@ Python 문자열(string)을 작성할 때 작은 따옴표로 감싸듯이 정�
 | \| | \[]안에서 쓰이면 or의 의미                              | 
 | () | 패턴을 그룹화할 때 사용                                 |
 
-<br><br>
+<br>
 **예시**
 
 ```python
@@ -79,7 +79,7 @@ print(digit_pattern)
 <re.Match object; span=(0, 10), match='832-38-184'>
 ```
 
-정규표현식(Regular Expression) 해석 :
+정규표현식(Regular Expression) 해석 :<br>
 `\d{3}` 숫자 3개가 와야 함, `-*` 하이픈은 있어도 되고 없어도 됨
 
 ```python
@@ -92,7 +92,7 @@ print(name_pattern)
 <re.Match object; span=(0, 21), match='Rich Salamander Vuduc'>
 ```
 
-정규표현식(Regular Expression) 해석 :
+정규표현식(Regular Expression) 해석 :<br>
 `^` string이 바로 뒤에 이어지는 패턴으로 시작해야 함 `[a-zA-Z]+` First name은 알파벳이 1개 이상(+) `\s+` First name 뒤에 공백이 1개 이상(+) 올 수 있음 `([a-zA-Z]+\s)` Middle name은 알파벳 1개 이상(+) 그리고 공백이 1개 올 수 있음 `?` Middle name은 있어도 되고 없어도 됨 `[a-zA-Z]+` Last name은 알파벳이 1개 이상(+) 임 `$` string이 바로 앞의 패턴으로 끝나야 함
 
 ```python
@@ -105,7 +105,7 @@ print(email_pattern)
 <re.Match object; span=(0, 20), match='test_email@gmail.com'>
 ```
 
-정규표현식(Regular Expression) 해석 :
+정규표현식(Regular Expression) 해석 :<br>
 `^[a-zA-Z]` 알파벳으로 시작해야 함 `[a-zA-Z0-9.\-_]*` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 0 또는 1개 이상(\*) 올 수 있음 `@` @ 문자가 와야 함 `[a-zA-Z0-9.\-_]+` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 1개 이상(+) 와야 함 `[a-zA-z]$` 알파벳으로 끝나야 함
 
 ```python
@@ -118,7 +118,7 @@ print(example_pattern)
 <re.Match object; span=(0, 11), match='new_ep_f014'>
 ```
 
-정규표현식(Regular Expression) 해석 :
+정규표현식(Regular Expression) 해석 :<br>
 `new` new로 시작 `_?` 언더바는 있어도 되고 없어도 됨 `[a-z]+` 알파벳 소문자가 1개 이상(+) 옴 `[f|m]` f 혹은 m 문자가 와야 함 `\d{2,4}` 숫자가 2개 이상 4개 이하 와야 함
 
 
