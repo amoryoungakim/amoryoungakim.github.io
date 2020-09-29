@@ -73,8 +73,10 @@ s = '832-38-1847'
 digit_pattern = re.match('\d{3}-*\d{2}-*\d{3}', s)
 ```
 
+<span style="font: 0.9em/0.9em Roboto, Serif;">
 * \\d{3} : 숫자 3개가 와야 함
 * -* : 하이픈은 있어도 되고 없어도 됨
+</span>
 
 ```python
 # Name
