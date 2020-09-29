@@ -106,7 +106,7 @@ print(email_pattern)
 ```
 
 정규표현식(Regular Expression) 해석 :
-`^\[a-zA-Z]` 알파벳으로 시작해야 함 `[a-zA-Z0-9.\-_]*` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 0 또는 1개 이상(\*) 올 수 있음 `@` @ 문자가 와야 함 `[a-zA-Z0-9.\-_]+` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 1개 이상(+) 와야 함 `[a-zA-z]$` 알파벳으로 끝나야 함
+`^[a-zA-Z]` 알파벳으로 시작해야 함 `[a-zA-Z0-9.\-_]*` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 0 또는 1개 이상(\*) 올 수 있음 `@` @ 문자가 와야 함 `[a-zA-Z0-9.\-_]+` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 1개 이상(+) 와야 함 `[a-zA-z]$` 알파벳으로 끝나야 함
 
 ```python
 # Example
@@ -119,7 +119,7 @@ print(example_pattern)
 ```
 
 정규표현식(Regular Expression) 해석 :
-`new` new로 시작 `_?` 언더바는 있어도 되고 없어도 됨 `[a-z]+` 알파벳 소문자가 1개 이상(+) 옴 `[f\|m]` f 혹은 m 문자가 와야 함 `\d{2,4}` 숫자가 2개 이상 4개 이하 와야 함
+`new` new로 시작 `_?` 언더바는 있어도 되고 없어도 됨 `[a-z]+` 알파벳 소문자가 1개 이상(+) 옴 `[f|m]` f 혹은 m 문자가 와야 함 `\d{2,4}` 숫자가 2개 이상 4개 이하 와야 함
 
 
 ### 정규표현식(Regular Expression) 활용 메소드
@@ -128,7 +128,7 @@ print(example_pattern)
 
 #### 1. match
 
-위에서는 `digit_pattern = re.match('\d{3}-*\d{2}-*\d{3}', s)`와 같이 코드 한 줄로 패턴을 찾는 방법을 썼지만, 정규표현식(Regular Expression)을 여러번 반복해서 쓸 경우 compile을 활용하는 것이 좋다.
+위에서는 `digit_pattern = re.match('\d{3}-*\d{2}-*\d{3}', s)`와 같이 코드 한 줄로 패턴을 찾는 방법을 썼지만, 정규표현식(Regular Expression)을 여러번 반복해서 쓸 경우 아래 예시와 같이 compile을 활용하는 것이 좋다.
 
 ```python
 import re  
@@ -155,6 +155,7 @@ None
 모델명 `'TM2A4WSC61WP3_BK'`에서 품목(WSC)과 색상(BK)만 추출하고 싶다면 괄호를 사용해 그룹화 할 수 있다.
 
 ```python
+# 괄호로 그룹화 하는 예
 s = 'TM2A4WSC61WP3_BK'
 time_pattern = re.match('\w{5}([A-Z]{3})\w+_([A-Z]{2})', s)
 print(time_pattern.group())
@@ -174,6 +175,7 @@ BK
 괄호 안에 `?P<name>`을 써서 그룹에 이름을 지정해 줄 수도 있다.
 
 ```python
+# ?P<name>으로 그룹에 이름 부여하기
 s = 'TM2A4WSC61WP3_BK'
 time_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
 print(time_pattern.group('category'))
@@ -224,7 +226,7 @@ $5.94
 
 #### 3. findall
 
-패턴에 해당하는 모든 문자열을 찾아 list로 반환한다.
+정규표현식(Regular Expression)과 일치하는 모든 문자열을 찾아 list로 반환한다.
 
 ```python
 s = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
@@ -237,7 +239,7 @@ print(price_pattern)
 
 #### 4. finditer
 
-만약 패턴에 해당하는 모든 문자열을 찾아, `group(), start(), end(), span()` 메소드로 더 많은 정보를 얻고 싶다면 `finditer`를 써야 한다.
+만약 정규표현식(Regular Expression)과 일치하는 모든 문자열을 찾아, `group(), start(), end(), span()` 메소드로 얻을 수 있는 정보를 추출하고 싶다면 `finditer`를 써야 한다.
 
 ```python
 s = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
