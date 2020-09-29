@@ -69,66 +69,65 @@ Python 문자열(string)을 작성할 때 작은 따옴표로 감싸듯이 정�
 **예시**
 
 ```python
-# re Library import
 import re
 
 # Phone number
 s = '832-38-1847'
 digit_pattern = re.match('\d{3}-*\d{2}-*\d{3}', s)
+print(digit_pattern)
+
+# result
+<re.Match object; span=(0, 10), match='832-38-184'>
 ```
 
-    * \\d{3} : 숫자 3개가 와야 함
-    * -* : 하이픈은 있어도 되고 없어도 됨
+`\d{3}` 숫자 3개가 와야 한다는 뜻, `-*` 하이픈은 있어도 되고 없어도 됨
 
 ```python
 # Name
 s = 'Rich Salamander Vuduc'
 name_pattern = re.match('^[a-zA-Z]+\s+([a-zA-Z]+\s)?[a-zA-Z]+$', s)
 print(name_pattern)
+
+# result
+<re.Match object; span=(0, 21), match='Rich Salamander Vuduc'>
 ```
 
-* ^ : string이 바로 뒤에 이어지는 패턴으로 시작해야 함
-* \[a-zA-Z]+ : First name은 알파벳이 1개 이상(+) 임
-* \\s+ : First name 뒤에 공백이 1개 이상(+) 올 수 있음
-* (\[a-zA-Z]+\\s) : Middle name은 알파벳 1개 이상(+) 그리고 공백이 1개 올 수 있음
-* ? : Middle name은 있어도 되고 없어도 됨
-* \[a-zA-Z]+ : Last name은 알파벳이 1개 이상(+) 임
-* $ : string이 바로 앞의 패턴으로 끝나야 함
+`^` string이 바로 뒤에 이어지는 패턴으로 시작해야 함 `[a-zA-Z]+` First name은 알파벳이 1개 이상(+) `\s+` First name 뒤에 공백이 1개 이상(+) 올 수 있음 `([a-zA-Z]+\s)` Middle name은 알파벳 1개 이상(+) 그리고 공백이 1개 올 수 있음 `?` Middle name은 있어도 되고 없어도 됨 `[a-zA-Z]+` Last name은 알파벳이 1개 이상(+) 임 `$` string이 바로 앞의 패턴으로 끝나야 함
 
 ```python
 # Email
 s = 'test_email@gmail.com'
 email_pattern = re.match('^[a-zA-Z][a-zA-Z0-9.\-_+]*@[a-zA-Z0-9.\-_]+[a-zA-z]$', s)
 print(email_pattern)
+
+# result
+<re.Match object; span=(0, 20), match='test_email@gmail.com'>
 ```
 
-    * ^\[a-zA-Z] : 알파벳으로 시작해야 함
-    * \[a-zA-Z0-9.\\-\_]* : 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 0 또는 1개 이상(\*) 올 수 있음
-    * @ : @ 문자가 와야 함
-    * \[a-zA-Z0-9.\\-\_]+ : 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 1개 이상(+) 와야 함
-    * \[a-zA-z]$ : 알파벳으로 끝나야 함
-
+`^\[a-zA-Z]` 알파벳으로 시작해야 함 `[a-zA-Z0-9.\-_]*` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 0 또는 1개 이상(\*) 올 수 있음 `@` @ 문자가 와야 함 `[a-zA-Z0-9.\-_]+` 알파벳, 숫자, 마침표, -, _ 에 해당하는 문자가 1개 이상(+) 와야 함 `[a-zA-z]$` 알파벳으로 끝나야 함
 
 ```python
 # Example
 s = 'new_ep_f014'
 example_pattern = re.match('new_?[a-z]+_[f|m]\d{2,4}', s)
 print(example_pattern)
+
+# result
+<re.Match object; span=(0, 11), match='new_ep_f014'>
 ```
 
-* new : new로 시작
-* \_? : 언더바는 있어도 되고 없어도 됨
-* \[a-z]+ : 알파벳 소문자가 1개 이상(+) 옴
-* \[f\|m] : f 혹은 m 문자가 와야 함
-* \\d{2,4} : 숫자가 2개 이상 4개 이하 와야 함
+`new` new로 시작 `_?` 언더바는 있어도 되고 없어도 됨 `[a-z]+` 알파벳 소문자가 1개 이상(+) 옴 `[f\|m]` f 혹은 m 문자가 와야 함 `\d{2,4}` 숫자가 2개 이상 4개 이하 와야 함
 
 
 ### 정규표현식(Regular Expression) 활용 메소드
 
+정규표현식 활용 메소드에는 `match, search, findall, finditer, sub` 등이 있다.
+
 #### 1. match
 
+위에서는 `digit_pattern = re.match('\d{3}-*\d{2}-*\d{3}', s)`와 같이 코드 한 줄로 패턴을 찾는 방법을 썼지만, 정규표현식(Regular Expression)을 여러번 반복해서 쓸 경우 compile을 활용하는 것이 좋다.
+
 ```python
-# re library를 호출한다.
 import re  
 
 # 제품명 목록
@@ -140,10 +139,8 @@ time_pattern = re.compile('TM[a-zA-Z0-9]{10,11}_BK')
 # time_string의 4개 모델명을 time_pattern에 대입해보고 일치하면 그 결과를, 아니면 None을 반환한다.
 for s in time_string:
   print(time_pattern.match(s))
-```
-
-결과는
-``` 
+  
+# result
 <re.Match object; span=(0, 16), match='TM2A4WSC61WP3_BK'>
 None
 None
@@ -161,10 +158,8 @@ print(time_pattern.group())
 print(time_pattern.group(0))
 print(time_pattern.group(1))
 print(time_pattern.group(2))
-```
 
-결과
-```
+# result
 TM2A4WSC61WP3_BK
 TM2A4WSC61WP3_BK
 WSC
@@ -180,12 +175,12 @@ s = 'TM2A4WSC61WP3_BK'
 time_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
 print(time_pattern.group('category'))
 print(time_pattern.group('color'))
-```
-결과
-```
+
+# result
 WSC
 BK
 ```
+
 `group()` 외에도 `start(), end(), span()`을 써서 일치하는 패턴의 위치를 파악할 수 있다.
 
 ```python
@@ -196,10 +191,8 @@ time_pattern = re.match('\w{5}(?P<category>[A-Z]{3})\w+_(?P<color>[A-Z]{2})', s)
 print(time_pattern.start(1))
 print(time_pattern.end(1))
 print(time_pattern.span(1))
-```
-결과
 
-```
+# result
 5
 8
 (5, 8)
@@ -209,18 +202,16 @@ print(time_pattern.span(1))
 
 문자열의 처음과 끝이 모두 정규표현식(Regular Expression)과 일치해야만 하는 `match`와는 달리 `search`는 전체 문자열에서 원하는 패턴과 일치하는 부분을 골라준다.
 
-```pythons = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
+```python
+s = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
 price_pattern = re.search('\$\d[.]\d{2}', s)
 print(price_pattern)
 print(price_pattern.group())
 print(price_pattern.start())
 print(price_pattern.end())
 print(price_pattern.span())
-```
 
-결과
-
-```
+# result
 <re.Match object; span=(11, 16), match='$5.94'>
 $5.94
 11
@@ -236,9 +227,8 @@ $5.94
 s = 'With Deal:	$5.94 + No Import Fees Deposit & $7.46 Shipping to Korea, Republic of'
 price_pattern = re.findall('\$\d[.]\d{2}', s)
 print(price_pattern)
-```
-결과
-```
+
+# result
 ['$5.94', '$7.46']
 ```
 
@@ -257,9 +247,8 @@ for m in price_pattern:
     print(m.start())
     print(m.end())
     print(m.span())
-```
-결과
-```
+    
+# result
 ---------------
 <re.Match object; span=(11, 16), match='$5.94'>
 $5.94
