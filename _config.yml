@@ -16,16 +16,16 @@ minimal_mistakes_skin    : "default" # "default", "air", "aqua", "contrast", "da
 
 # Site Settings
 locale                   : "en-US"
-title                    : "스티키  레코"
+title                    : #"스티키 레코"
 title_separator          : "-"
 subtitle                 : "S T I C K Y R E C O"
 name                     : #"x"
-description              : #"머신러닝을 공부하는 마케터의 블로그입니다."
+description              : "머신러닝을 공부하는 마케터의 블로그입니다."
 url                      : "https://amoryoungakim.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : "/assets/images/sticky_reco4.PNG" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+logo                     : "/assets/images/sticky_reco5.PNG" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -95,7 +95,7 @@ analytics:
 author:
   name             : #"yakim"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "머신러닝을 공부하는 마케터입니다.<br>기호와 패턴 읽는 것을 좋아합니다."
+  bio              : #"머신러닝을 공부하는 마케터입니다.<br>기호와 패턴 읽는 것을 좋아합니다."
   email            : "amoryounga.kim@gmail.com"
   location         : "South Korea"
   links:
