@@ -84,7 +84,7 @@ s.capitalize() # 문자열의 시작만 대문자로, 나머지는 소문자로
 s.replace("A", "B") # 'A'를 'B'로 바꾸기
 ```
 
-여러 종류의 문자를 1:1로 매핑해서 변경할 때는 `replace()` 대신 `translate()`를 쓸 수 있다. 먼저 `maketrans()`로 tanslator를 만들어 준 다음 `translate()`를 써준다. 단 이 방법은 사과 > Apple 로 치환할 수는 없고 도 > C 와 같이 길이가 1인 문자간의 치환만 가능하다.
+여러 종류의 문자를 1:1로 매핑해서 변경할 때는 `replace()` 대신 `translate()`를 쓸 수 있다. 먼저 `maketrans()`로 tanslator를 만들어 준 다음 `translate()`를 써준다. 이 방법은 `사과 > Apple` 로 치환할 수는 없고 `도 > C`와 같이 길이가 1인 문자간의 치환만 가능하다.
 
 ```python
 # translator 만들기
