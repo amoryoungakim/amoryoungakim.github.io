@@ -16,6 +16,24 @@ s[2:10:-2] # 빈 문자열 '' 반환
 
 역순으로 슬라이싱을 할 때는 start index 부터 거꾸로 end index까지 문자열을 가져오기 때문에 `s[2:10:-2]`와 같이 start index가 end index보다 작으면 빈 문자열 ''이 반환된다. 역방향으로 진행할 수가 없기 때문이다.
 
+### 문자열(string) 개수 세기, 최대값, 최소값
+```python
+len(s) # 문자열의 길이
+min(s) # 최소값
+max(s) # 최대값
+s.count('a') # 문자열에 'a'가 몇개 있나
+```
+
+문자열에 포함된 모든 문자에 대한 개수를 세고 싶다면 collections 라이브러리의 Counter() 함수를 쓰면 편리하다.
+
+```python
+from collections import Counter
+dict(Counter('fffffffegggggggmzkkkkkog'))
+
+# result
+{'f': 7, 'e': 1, 'g': 8, 'm': 1, 'z': 1, 'k': 5, 'o': 1}
+```
+
 ### 문자열(string) 형태 확인
 ```python
 s.isalnum() # 문자열이 알파벳과 숫자로 이루어져 있나?
@@ -29,13 +47,6 @@ s.isdecimal() # 문자열이 10진수인가?
 s.isspace() # 문자열이 공백으로만 이루어져 있나?
 s.startswidth('a') # 문자열이 'a'로 시작하나?
 s.endswidth('a') # 문자열이 'a'로 끝나나?
-```
-
-```python
-len(s) # 문자열의 길이
-min(s) # 최소값
-max(s) # 최대값
-s.count('a') # 문자열 s 안에 'a'가 몇개 있나
 ```
 
 ### 문자열(string) 검색하기
