@@ -34,8 +34,8 @@ LIMIT 5;
 | 4     | Google Men's 100% Cotton Short Sleeve Hero Tee Navy     | 76 |
 | 5     | Engraved Ceramic Google Mug                             | 72 |
 
-
-작년 12/16 ~ 12/31 사이에 가장 많이 팔렸던 제품은 바로 Google Sunglass였다.(한 겨울에?) '판매'가 이루어진 action은 `eCommerceAction`에 `action_type`으로 정리되어 있다. `action_type = 6`이면 결재가 끝난 것이고, `action_type = 3`이면 cart에 담은 것이다. 더 상세한 기준은 여기https://storage.googleapis.com/e-nor/visualizations/bigquery/ga360-schema.html#section-collapsible-tree를 참고하면 된다.
+<br>
+작년 12/16 ~ 12/31 사이에 가장 많이 팔렸던 제품은 바로 Google Sunglass였다.(한 겨울에??) '판매'와 관련된 action은 `eCommerceAction.action_type`에 담겨 있다. `action_type = 6`이면 결재가 끝난 것이고, `action_type = 3`이면 cart에 담은 것이다. 더 상세한 기준은 [여기](https://storage.googleapis.com/e-nor/visualizations/bigquery/ga360-schema.html#section-collapsible-tree)를 참고하면 된다.
 
 `hits` 정보는 array 형식으로 한 셀에 묶여 있어서, array 안에 있는 정보를 꺼내오기 위해서는 반드시 `UNNEST`를 해주어야 한다.
 
@@ -72,14 +72,16 @@ GROUP BY 1
 ```
 
 결과
+
 |  row  |    fullVisitorId    | convStartTime | add_to_cart|
-|-------|---------------------|----|----|
+|-------|---------------------|---------------|------------|
 | 1     | 9998768158040586927 | 1483257600 | N |
 | 2     | 979215407457047348 | 1483257600 | N |
 | 3     | 6790396104201220080 | 1483257600 | N |
 | 4     | 7681066101584919753  | 1483257600 | N |
 | 5     | 8921276772339987363 | 1483257600 | N |
 
+<br>
 한겨울에 Sunglass를 구매한 사람들은 어떤 사람들일까? 고객 정보를 분석하기에 앞서 구매한 ID와 그렇지 않은 ID를 추려보자.
 
 `convStartTime`이라는 열을 만들어 구매한 경우 그 Session의 visitStartTime을 넣어주고, 구매 하지 않은 경우 데이터 추출 기간의 끝 시점인 '17년 1월 1일 0시를 UNIX_SECONDS로 변환해 넣어주었다. 구매 여부를 Y/N으로 출력하면 더 간단하지만 나중에 visitStartTime을 기준으로 삼아 다른 데이터를 추출하기 위해 일부러 남겨두었다. `add_to_cart`는 간단하게 Y/N으로 출력했다.
