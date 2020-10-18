@@ -104,11 +104,32 @@ print(C[0, 0::2, 3::-2])
 ### 난수 생성하기
 
 ```python
-x = np.random.randint(0, 20, 15) # 0과 20 사이의 수 중 15개의 수를 랜덤하게 생성
-print(x)
+np.random.randint(0, 20, 15)           # 0과 20 사이의 수 중 15개를 랜덤하게 생성
+np.random.randint(0, 20, size=(4,3))   # 0과 20 사이의 수 중 12개를 랜덤하게 생성해 4x3 배열로
+```
 
-# result
-[10  3  8  0 19 10 11  9 10  6  0 12  7 14 17]
+### 간단한 통계 내기
+
+```python
+np.min
+np.max
+np.sum  # 모든 요소를 다 더한 결과
+np.mean
+np.std
+np.abs
+np.maximum(A, B)  # A,B의 각 요소중 큰것만 뽑아줌
+np.sum(A, axis=0)  # A가 [m, n, k] 행렬일 때 axis=0 요소를 없애는 방향으로 더함, 즉, [n, k]가 리턴되도록 더함
+```
+(랑크) [numpy axis 설명]http://machinelearningkorea.com/2019/05/18/%ED%8C%8C%EC%9D%B4%EC%8D%AC-axis-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%B9%98%ED%8A%B8%EC%BD%94%EB%93%9C/
+(링크) [Scala, vector, matrix, tensor 설명]http://taewan.kim/post/numpy_sum_axis/
+
+### array 연산
+
+```python
+A + 3    # 각 요소에 3을 더함
+
+
+
 ```
 
 ### array를 index로 지정해서 array 슬라이싱 하기
