@@ -67,6 +67,9 @@ df['newColumn'] = 0  #열 추가
 #행 추가
 new_row = {'columnA':3, 'columnB':5}
 df.append(new_row, ignore_index=True)
+
+#행 순서 변경
+df = df[['columnB', 'columnA']]  #A,B 순서였던 것을 B,A로 변경
 ```
 
 ### missing value 처리
