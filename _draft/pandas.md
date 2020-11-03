@@ -53,6 +53,7 @@ import pandas as pd
 
 df.drop(df.index[1:2], axis=0, inplace=True)  #행을 삭제
 df.drop(['columnA', 'columnB'], axis=1, inplace=True)  #열을 삭제
+del df['columnA']
 
 #특정 조건으로 필터링해서 행 삭제
 index = df[df['columnA'==0 | 'columnB' > 3]].index  # &나 |로 연결
@@ -60,6 +61,12 @@ df.drop(index, inplace=True)
 
 #중복되는 행 삭제
 df.drop_duplicates(inplace=True, ignore_index=True)  #ignore_index를 True로 하면 index를 0부터 리셋해줌
+
+df['newColumn'] = 0  #열 추가
+
+#행 추가
+new_row = {'columnA':3, 'columnB':5}
+df.append(new_row, ignore_index=True)
 ```
 
 ### missing value 처리
@@ -74,8 +81,9 @@ df.dropna(axis=1, inplace=True)  #열을 삭제
 df.dropna(axis=1, how='all', inplace=True)  #열의 모든 값이 na일 때 그 열을 삭제
 
 df.fillna(0, inplace=True, downcast='infer')  #downcast='infer'는 float를 int로 변경
+df.fillna(method='ffill')  #value 없이 method=ffill이면 바로 윗행의 값을 가져옴
+df.ffill()  #위와 같은 기능
 ```
-
 
 ### 행, 열 이름 변경
 
@@ -83,7 +91,9 @@ df.fillna(0, inplace=True, downcast='infer')  #downcast='infer'는 float를 int�
 import pandas as pd
 
 df.rename(columns = {'A':'B'}, index = {'C':'D'})
-df.rename
+df.reset_index(drop = True, inplace=True)  
+df.set_index('columnA', inplace=True)
+df.
 pd.concat(list)
 df.fillna
 df.drop_duplicates
