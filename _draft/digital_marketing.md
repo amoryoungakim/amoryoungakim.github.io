@@ -9,4 +9,4 @@ Google Analytics
 https://analytics.google.com/analytics/academy/
 
 Ad Tech
-http://blog.pandora.tv/2018/05/ad-tech%ec%95%a0%eb%93%9c%ed%85%8c%ed%81%ac-%eb%94%94%ec%a7%80%ed%84%b8-%ea%b4%91%ea%b3%a0%eb%9e%80/
+http://blog.pandora.tv/category/prism/ad_tech/
