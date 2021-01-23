@@ -46,7 +46,7 @@ cols = df.columns[:3].to_list() + ["columnA", "columnB"]
 df.loc[:, cols]
 ```
 
-### 행,열 삭제 및 추가
+### 행,열 삭제하기
 
 ```python
 import pandas as pd
@@ -64,6 +64,12 @@ df.drop(index, inplace=True)
 
 #중복되는 행 삭제
 df.drop_duplicates(inplace=True, ignore_index=True)  #ignore_index를 True로 하면 index를 0부터 리셋해줌
+```
+
+### 행,열 추기하기
+
+```python
+import pandas as pd
 
 #열 추가
 df['newColumn'] = 0
@@ -117,15 +123,14 @@ df.merge(df1, how = 'left', on = 'fullVisitorId')
 #열 합치기
 def mergeCols(a, b):
     return str(a) + "," + str(b)
-df['merged'] = df.apply(lambda x: mergeCols(x['A'], x['B']), axis = 1)
+df['AB'] = df.apply(lambda x: mergeCols(x['A'], x['B']), axis = 1)
 
 #열 나누기
-def splitCols(string):
-    fields = re.findall('_____', string)
-    return fields
-df = df.merge(df[AB].apply(lambda x: pd.Series({'A':splitCols(x)[0], 'B':splitCols(x)[1]})), 
+def splitCols(row):
+    return row.split(',')
+df = df.merge(df['AB'].apply(lambda x: pd.Series({'A':splitCols(x)[0], 'B':splitCols(x)[1]})), 
     left_index = True, right_index = True)  #join key로 양쪽의 index를 사용
-del df[AB]  #원본 열은 삭제
+del df['AB']  #원본 열은 삭제
 ```
 
 ### 값 정렬하기
@@ -133,6 +138,6 @@ del df[AB]  #원본 열은 삭제
 ```python
 import pandas as pd
 
-df.sort_values()
-df.sort_index()
+df.sort_values(by = ['colA','colB'], axis = 0, ascending = True, inplace = True)
+df.sort_index(axis = 0, ascending = True, inplace = True)
 ```
