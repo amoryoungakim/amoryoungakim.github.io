@@ -92,9 +92,14 @@ TN이 포함되는 지표는 신뢰도가 낮음 (accuracy같은거)
 
 sklearn Surprise 패키지를 이용하면 위 알고리즘 구현되어 있음
 
+활용
+제품 추천
+검색 결과 정확도 높이기
+광고 추천 (클릭 가능성 예측)
 
+간접 평가 데이터 (indirect evaluation data)
+쇼핑몰에서 몇번 방문 했고 얼마나 시간을 보냈나 - 선호도 측정에 효과적
 
-
-
+ppm score를 rating 대신 쓸 수도 있을 거 같다
 
 ```python
