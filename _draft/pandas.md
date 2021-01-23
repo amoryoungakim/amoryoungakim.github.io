@@ -34,9 +34,9 @@ df.columns
 ```python
 import pandas as pd
 
-df.iloc[1, 1]
+df.iloc[1, 1]  #index로 찾기
 df.iloc[34:39, [0, 2, 5, 7]]  #범위로 선택하거나, []안에 넣어 여러개를 선택
-df.loc['indexA', 'columnA']
+df.loc['indexA', 'columnA']  #값으로 찾기
 df.loc[:, ['columnA', 'columnB']]  #행, 열 전체를 선택할 때는 :
 
 rows = list(range(5)) + [35, 36]
@@ -51,8 +51,11 @@ df.loc[:, cols]
 ```python
 import pandas as pd
 
-df.drop(df.index[1:2], axis=0, inplace=True)  #행을 삭제
-df.drop(['columnA', 'columnB'], axis=1, inplace=True)  #열을 삭제
+#행 삭제
+df.drop(df.index[1:2], axis=0, inplace=True)
+
+#열 삭제
+df.drop(['columnA', 'columnB'], axis=1, inplace=True)
 del df['columnA']
 
 #특정 조건으로 필터링해서 행 삭제
@@ -62,7 +65,8 @@ df.drop(index, inplace=True)
 #중복되는 행 삭제
 df.drop_duplicates(inplace=True, ignore_index=True)  #ignore_index를 True로 하면 index를 0부터 리셋해줌
 
-df['newColumn'] = 0  #열 추가
+#열 추가
+df['newColumn'] = 0
 
 #행 추가
 new_row = {'columnA':3, 'columnB':5}
@@ -88,19 +92,36 @@ df.fillna(method='ffill')  #value 없이 method=ffill이면 바로 윗행의 값
 df.ffill()  #위와 같은 기능
 ```
 
-### 행, 열 이름 변경
+### 행,열 이름 변경
 
 ```python
 import pandas as pd
 
-df.rename(columns = {'A':'B'}, index = {'C':'D'})
-df.reset_index(drop = True, inplace=True)  
-df.set_index('columnA', inplace=True)
-df.
+df.rename(columns = {'A':'B'}, index = {'C':'D'})  #A는 B로 바꾸고 C는 D로 바꿈
+df.reset_index(drop = True, inplace=True)  #행의 index를 0,1,2,... 순서대로 다시 매김
+df.set_index('columnA', inplace=True)  #행의 index를 columnA의 값으로 바꿈
+```
+
+### 행,열 합치기
+
+```python
+import pandas as pd
+
 pd.concat(list)
-df.fillna
-df.drop_duplicates
+pd.merge
+
 df.sort_values
 
-apply 쓰는법 복습
+#열 합치기
+def mergeCols(a, b):
+    return str(a) + "," + str(b)
+df['merged'] = df.apply(lambda x: mergeCols(x['A'], x['B']), axis = 1)
+
+#열 나누기
+def splitCols(string):
+    fields = re.findall('_____', string)
+    return fields
+df = df.merge(df[AB].apply(lambda x: pd.Series({'A':splitCols(x)[0], 'B':splitCols(x)[1]})), 
+    left_index = True, right_index = True)  #join key로 양쪽의 index를 사용
+del df[AB]  #원본 열은 삭제
 ```
