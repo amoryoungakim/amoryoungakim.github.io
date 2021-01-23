@@ -107,10 +107,12 @@ df.set_index('columnA', inplace=True)  #행의 index를 columnA의 값으로 바
 ```python
 import pandas as pd
 
+#데이터프레임 합치기_위아래로
 pd.concat(list)
-pd.merge
+pd.concat(df1, df2)
 
-df.sort_values
+#데이터프레임 합치기_옆으로
+df.merge(df1, how = 'left', on = 'fullVisitorId')
 
 #열 합치기
 def mergeCols(a, b):
@@ -124,4 +126,13 @@ def splitCols(string):
 df = df.merge(df[AB].apply(lambda x: pd.Series({'A':splitCols(x)[0], 'B':splitCols(x)[1]})), 
     left_index = True, right_index = True)  #join key로 양쪽의 index를 사용
 del df[AB]  #원본 열은 삭제
+```
+
+### 값 정렬하기
+
+```python
+import pandas as pd
+
+df.sort_values()
+df.sort_index()
 ```
