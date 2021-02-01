@@ -26,3 +26,23 @@ string_list = ['A','B','C']
 int_list = [1, 2, 3]
 dictionary = dict(zip(string_list, int_list))
 print(dictionary)
+
+update
+
+
+set생성하기
+a = set()
+set.add()
+set.remove('a') # set에 포함되지 않은 값을 넣으면 에러
+set.discard('a') # set에 포함되지 않은 값을 넣어도 에러 안남
+
+합집합 a|b
+교집합 a&b
+차집합 a-b
+대칭차집합 a^b (합집합 - 교집합)
+a.issubset(b) a가 b의 부분집합인가?
+b.issuperset(a) b가 a의 부분집합인가?
+a.isdisjoint(b) a와 b에 교집합이 있는가?
+
+from itertools import combinations
+combinations(L, 2)  #L의 원소 2개씩 짝지어줌
