@@ -22,11 +22,20 @@ import pandas as pd
 
 df.head()
 df.tail()
-df.info()  #cardinality, dtype 확인
+df.info()  #cardinality, dtype 확인 (df.dtypes 로도 확인 가능)
 df.describe()  #non-object type 변수들의 간단한 통계
 df.describe(include = "O")  #object type 변수들의 간단한 통계
 df.shape  #행, 열 개수
 df.columns
+```
+
+### data 타입 변경
+
+```python
+import pandas as pd
+
+df.astype('float') #df 전체 변경
+df.astype({'columnA':'object'}) #특정 열만 변경
 ```
 
 ### 슬라이싱
@@ -66,7 +75,7 @@ df.drop(index, inplace=True)
 df.drop_duplicates(inplace=True, ignore_index=True)  #ignore_index를 True로 하면 index를 0부터 리셋해줌
 ```
 
-### 행,열 추기하기
+### 행,열 추가하기
 
 ```python
 import pandas as pd
