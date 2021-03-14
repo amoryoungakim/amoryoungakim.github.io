@@ -114,3 +114,17 @@ from pyspark.sql.functions import sum
 
 df.groupBy('colA').sum()  # colA의 값으로 그룹화 하여 나머지 열의 sum을 리턴
 ```
+
+### 날짜 가공
+
+```python
+from pyspark.sql.functions import format_number,dayofmonth,hour,dayofyear,month,year,weekofyear,date_format
+
+#colA가 timestamp 형식일 때
+df.select(year(df['colA']))  # '년도'만 리턴
+df.select(month(df['colA']))  # '월'만 리턴
+df.select(dayofmonth(df['colA']))  # '일'만 리턴
+df.select(hour(df['colA']))  # '시간'만 리턴
+df.select(hour(df['colA']))  # '시간'만 리턴
+
+```
