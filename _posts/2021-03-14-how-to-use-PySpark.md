@@ -58,25 +58,32 @@ df.withColumn("colA", df["colA"].cast(IntegerType()))
 ### 행,열 삭제하기
 
 ```python
-
+df.drop('colA', 'colB')
 ```
 
 ### 행,열 추가하기
 
 ```python
-
+df.withColumn('new colA', df['colA']+5)
+df.withColumn('new colA', lit(5))
 ```
 
 ### missing value 처리
 
 ```python
-
+df.na.drop()
+df.na.drop(subset=['colA'])
+df.na.fill(value)
+df.na.fill(value, subset=['colA'])
 ```
 
 ### 행,열 이름 변경
 
 ```python
+from pyspark.sql.functions import col, sum
 
+df.select(col('colA').alias('new colA'))
+df.select(sum('colA').alias('sum colA'))
 ```
 
 ### 행,열 합치기
@@ -88,5 +95,22 @@ df.withColumn("colA", df["colA"].cast(IntegerType()))
 ### 값 정렬하기
 
 ```python
+df.orderBy(df['colA'])
+df.orderBy(df['colA'].desc())
+```
 
+### 전체열 집계
+
+```python
+from pyspark.sql.functions import sum
+
+df.select(sum('colA'))  # colA의 전체 합을 리턴
+```
+
+### 그룹별 집계
+
+```python
+from pyspark.sql.functions import sum
+
+df.groupBy('colA').sum()  # colA의 값으로 그룹화 하여 나머지 열의 sum을 리턴
 ```
