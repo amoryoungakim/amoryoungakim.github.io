@@ -127,4 +127,5 @@ df.select(dayofmonth(df['colA']))  # '일'만 리턴
 df.select(hour(df['colA']))  # '시간'만 리턴
 df.select(hour(df['colA']))  # '시간'만 리턴
 
+date format (https://spark.apache.org/docs/latest/sql-ref-datetime-pattern.html)
 ```
