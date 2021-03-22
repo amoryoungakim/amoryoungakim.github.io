@@ -38,6 +38,7 @@ df.tail()
 df.describe()
 df.count()
 df.columns
+type(df['colA'])
 ```
 
 ### data 타입 변경
@@ -52,7 +53,11 @@ df.withColumn("colA", df["colA"].cast(IntegerType()))
 ### 슬라이싱
 
 ```python
-
+df.select("colA")
+df.select(["colA", "colB"])
+df.filter(df["colA"] > 2)
+df.filter((df["colA"] > 2) & (df["colB"] > 10))
+df.limit(10) # 상위 10개 row
 ```
 
 ### 행,열 삭제하기
@@ -84,6 +89,7 @@ from pyspark.sql.functions import col, sum
 
 df.select(col('colA').alias('new colA'))
 df.select(sum('colA').alias('sum colA'))
+df.withColumnRenamed('colA','colB')
 ```
 
 ### 행,열 합치기
@@ -105,6 +111,7 @@ df.orderBy(df['colA'].desc())
 from pyspark.sql.functions import sum
 
 df.select(sum('colA'))  # colA의 전체 합을 리턴
+df.select(countDistinct('colA'))
 ```
 
 ### 그룹별 집계
@@ -113,6 +120,7 @@ df.select(sum('colA'))  # colA의 전체 합을 리턴
 from pyspark.sql.functions import sum
 
 df.groupBy('colA').sum()  # colA의 값으로 그룹화 하여 나머지 열의 sum을 리턴
+df.groupBy('colA').agg({'colB':'sum'})
 ```
 
 ### 날짜 가공
