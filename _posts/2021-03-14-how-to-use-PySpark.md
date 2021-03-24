@@ -111,7 +111,8 @@ df.orderBy(df['colA'].desc())
 from pyspark.sql.functions import sum
 
 df.select(sum('colA'))  # colA의 전체 합을 리턴
-df.select(countDistinct('colA'))
+df.select(countDistinct('colA'))  #colA의 unique한 값이 몇개인지 리턴
+df.select('colA').distinct()  # colA의 unique한 값 리턴
 ```
 
 ### 그룹별 집계
