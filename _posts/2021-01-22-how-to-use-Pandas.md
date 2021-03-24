@@ -82,6 +82,7 @@ import pandas as pd
 
 #열 추가
 df['newColumn'] = 0
+df.loc[:,'newColumn'] = ['val1','val2','val3', ...]
 
 #행 추가
 new_row = {'columnA':3, 'columnB':5}
