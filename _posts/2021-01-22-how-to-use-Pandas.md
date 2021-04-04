@@ -32,6 +32,7 @@ df.columns
 ```python
 df.astype('float') #df 전체 변경
 df.astype({'columnA':'object'}) #특정 열만 변경
+pd.to_numeric(df['colA'])
 ```
 
 ### 슬라이싱
@@ -129,6 +130,19 @@ def splitCols(row):
 df = df.merge(df['AB'].apply(lambda x: pd.Series({'A':splitCols(x)[0], 'B':splitCols(x)[1]})), 
     left_index = True, right_index = True)  #join key로 양쪽의 index를 사용
 del df['AB']  #원본 열은 삭제
+```
+
+### 특정 열을 기준으로 그룹화 하기
+```python
+df.groupby('colA').mean()
+df.groupby(['colA', 'colB']).mean()
+
+# colA의 값을 기준으로 colB의 값을 그룹화하여 list로 만듦
+df.groupby('colA')['colB'].apply(list)
+
+# colB, colC, colD의 값을 각각 다른 조건으로 그룹화
+df.groupby('colA').agg({'colB':'sum' ,'colC':'count'}) 
+df.groupby('colA').agg({'colB':'count', 'colC':lambda row: ', '.join(row)}) 
 ```
 
 ### 값 정렬하기
