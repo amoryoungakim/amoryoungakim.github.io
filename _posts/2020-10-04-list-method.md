@@ -1,43 +1,65 @@
 ---
-title: "파이썬 리스트 메소드 (Python List Methods)"
+title: "파이썬 리스트 사용 팁 (Python List Methods and Tips)"
 date: 2020-10-04 00:00:00 -0400
 permalink: '/list_methods/'
 categories: Python
 ---
 
-### 요약
+### List 생성하기
+```
+L = []  # list 초기화 
+L = [0] * 5  #0 다섯개로 이루어진 list 생성
+```
 
+### List 슬라이싱
+```
+L[:5]
+L[5:]
+L.index(23) # 23이라는 요소의 index (앞에서부터)
+```
+
+### List에 요소 추가 하기
 ```python
-L.sort(reverse = False) # 정렬
-sorted(L, reverse = False) # 정렬
-L.reverse() # 역순으로 배열 (역순 정렬이 아님)
-L[::-1] # L.reverse()와 동일
-
 L.append(21) # 끝에 21 추가
 L.extend(M) # 끝에 List M 추가
 L + M # 끝에 List M 추가
 L.insert(0, 5) # 0번 index에 숫자 5 추가
 L *= 3 # L의 요소들이 세 번 반복됨
+L.copy() # L과 동일한 List 생성
+```
 
+### List에 요소 삭제하기
+```
 L.remove(26) # 26 하나 삭제 (앞에서부터)
 L.pop() # 맨 끝에 하나 삭제
 L.pop(-3) # 뒤에서 세 번째 삭제
 del L[-5:] # 범위에 해당하는 요소 삭제
-
-L.index(23) # 23이라는 요소의 index (앞에서부터)
-L.count(15) # 15라는 요소가 몇개 들어 있나
-L.copy() # L과 동일한 List 생성
 L.clear() # 비어있는 List로 만들기
+```
 
+# List 개수 세기, 최대값, 최소값
+```python
+L.count(15) # 15라는 요소가 몇개 들어 있나
 len(L) # List의 전체 길이
 min(L) # 최소값
 max(L) # 최대값
-sum(L) # 요소 전체 더함
+```
 
+# 간단한 통계 내기
+```python
 from statistics import mean, variance, stdev
+sum(L) # 요소 전체 더함
 mean(L) # 요소 전체의 평균
 variance(L) # 요소 전체의 분산
 stdev(L) # 요소 전체의 표준편차
+```
+
+### List 정렬하기
+```python
+L.sort(reverse = False) # 정렬
+sorted(L, reverse = False) # 정렬
+L.reverse() # 역순으로 배열 (역순 정렬이 아님)
+L[::-1] # L.reverse()와 동일
 ```
 
 ### Sort vs. Sorted
@@ -107,14 +129,6 @@ print([len(x) for x in s.split()])
 
 # result
 [3, 3, 2, 10]
-```
-
-```python
-# 리스트를 0.0 5개로 초기화 하기
-L = [0.0] * 5
-
-# result
-[0.0, 0.0, 0.0, 0.0, 0.0]
 ```
 
 ```python
