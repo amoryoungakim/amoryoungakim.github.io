@@ -6,13 +6,13 @@ categories: Python
 ---
 
 ### List 생성하기
-```
+```python
 L = []  # list 초기화 
 L = [0] * 5  #0 다섯개로 이루어진 list 생성
 ```
 
 ### List 슬라이싱
-```
+```python
 L[:5]
 L[5:]
 L.index(23) # 23이라는 요소의 index (앞에서부터)
@@ -28,8 +28,8 @@ L *= 3 # L의 요소들이 세 번 반복됨
 L.copy() # L과 동일한 List 생성
 ```
 
-### List에 요소 삭제하기
-```
+### List 요소 삭제하기
+```python
 L.remove(26) # 26 하나 삭제 (앞에서부터)
 L.pop() # 맨 끝에 하나 삭제
 L.pop(-3) # 뒤에서 세 번째 삭제
@@ -37,7 +37,7 @@ del L[-5:] # 범위에 해당하는 요소 삭제
 L.clear() # 비어있는 List로 만들기
 ```
 
-# List 개수 세기, 최대값, 최소값
+### List 개수 세기, 최대값, 최소값
 ```python
 L.count(15) # 15라는 요소가 몇개 들어 있나
 len(L) # List의 전체 길이
@@ -45,7 +45,7 @@ min(L) # 최소값
 max(L) # 최대값
 ```
 
-# 간단한 통계 내기
+### 간단한 통계 내기
 ```python
 from statistics import mean, variance, stdev
 sum(L) # 요소 전체 더함
