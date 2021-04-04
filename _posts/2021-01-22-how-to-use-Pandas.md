@@ -1,5 +1,5 @@
 ---
-title: "파이썬 판다스 활용하기 (Python Pandas Examples)"
+title: "파이썬 판다스 팁 (Python Pandas Tips and Methods)"
 date: 2021-01-22 00:00:00 -0400
 permalink: '/pandas/'
 categories: Python
@@ -18,8 +18,6 @@ df = pd.read_csv('파일경로/파일명.csv')
 ### data 구조 살피기
 
 ```python
-import pandas as pd
-
 df.head()
 df.tail()
 df.info()  #cardinality, dtype 확인 (df.dtypes 로도 확인 가능)
@@ -32,8 +30,6 @@ df.columns
 ### data 타입 변경
 
 ```python
-import pandas as pd
-
 df.astype('float') #df 전체 변경
 df.astype({'columnA':'object'}) #특정 열만 변경
 ```
@@ -41,8 +37,6 @@ df.astype({'columnA':'object'}) #특정 열만 변경
 ### 슬라이싱
 
 ```python
-import pandas as pd
-
 df.iloc[1, 1]  #index로 찾기
 df.iloc[34:39, [0, 2, 5, 7]]  #범위로 선택하거나, []안에 넣어 여러개를 선택
 df.loc['indexA', 'columnA']  #값으로 찾기
@@ -58,8 +52,6 @@ df.loc[:, cols]
 ### 행,열 삭제하기
 
 ```python
-import pandas as pd
-
 #행 삭제
 df.drop(df.index[1:2], axis=0, inplace=True)
 
@@ -78,8 +70,6 @@ df.drop_duplicates(inplace=True, ignore_index=True)  #ignore_index를 True로 �
 ### 행,열 추가하기
 
 ```python
-import pandas as pd
-
 #열 추가
 df['newColumn'] = 0
 df.loc[:,'newColumn'] = ['val1','val2','val3', ...]
@@ -95,8 +85,6 @@ df = df[['columnB', 'columnA']]  #A,B 순서였던 것을 B,A로 변경
 ### missing value 처리
 
 ```python
-import pandas as pd
-
 df.isnull().sum()  #missing value가 몇 개인지 알아보기
 
 df.dropna(axis=0, inplace=True)  #행을 삭제
@@ -111,8 +99,6 @@ df.ffill()  #위와 같은 기능
 ### 행,열 이름 변경
 
 ```python
-import pandas as pd
-
 df.rename(columns = {'A':'B'}, index = {'C':'D'})  #A는 B로 바꾸고 C는 D로 바꿈
 df.reset_index(drop = True, inplace=True)  #행의 index를 0,1,2,... 순서대로 다시 매김
 df.set_index('columnA', inplace=True)  #행의 index를 columnA의 값으로 바꿈
@@ -121,15 +107,17 @@ df.set_index('columnA', inplace=True)  #행의 index를 columnA의 값으로 바
 ### 행,열 합치기
 
 ```python
-import pandas as pd
-
-#데이터프레임 합치기_위아래로
+#데이터프레임 합치기 (위아래로)
 pd.concat(list)
 pd.concat(df1, df2)
 
-#데이터프레임 합치기_옆으로
+#데이터프레임 합치기 (옆으로)
 df.merge(df1, how = 'left', on = 'fullVisitorId')
+```
 
+### Lambda 함수로 열의 값을 합치거나 나누기
+
+```python
 #열 합치기
 def mergeCols(a, b):
     return str(a) + "," + str(b)
@@ -146,8 +134,6 @@ del df['AB']  #원본 열은 삭제
 ### 값 정렬하기
 
 ```python
-import pandas as pd
-
 df.sort_values(by = ['colA','colB'], axis = 0, ascending = True, inplace = True)
 df.sort_index(axis = 0, ascending = True, inplace = True)
 ```
