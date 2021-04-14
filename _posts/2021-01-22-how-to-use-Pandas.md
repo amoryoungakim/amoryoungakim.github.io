@@ -110,7 +110,7 @@ df.set_index('columnA', inplace=True)  #행의 index를 columnA의 값으로 바
 ```python
 #데이터프레임 합치기 (위아래로)
 pd.concat(list)
-pd.concat(df1, df2)
+pd.concat([df1, df2])
 
 #데이터프레임 합치기 (옆으로)
 df.merge(df1, how = 'left', on = 'fullVisitorId')
