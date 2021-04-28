@@ -21,6 +21,19 @@ attribute란
 named tupel은
 collections 모듈로부터 namedtuple을 임포트해서 만든다
 튜플의 각 항목에 이름을 지정하고 그 이름으로 인덱싱을 할 수 있다.
+그냥 튜플은 indexing으로만 값에 접근할 수 있음
+
+List 변함, index로 접근, 순서 있음
+Tuple 불변, index로 접근, 순서 있음
+Set 변함, 순서 없음, 중복 없음
+Dictionary 변함, key로 접근, 순서 없음
+Named Tuple 불변, key/index로 접근, 순서 있음
+
+컨테이너 시퀀스
+서로 다른 자료형을 담을 수 있다. List, Tuple, collections.deque
+
+균일(flat) 시퀀스
+단 하나의 자료형만 담을 수 있다 array, str 등
 
 캡슐화(encapsulation)란 추상화(Abstraction)과 같은 것임
 객체 내부의 상세한 것은 몰라도 되게끔 만들어 놓은 것
@@ -29,3 +42,6 @@ parent class는 encapsualte되고 그 데이터를 child class가 접근하지 �
 
 parameter = arguments?
 
+Generator : Iterator를 생성해줌
+Iterator : 값을 차례대로 꺼낼 수 있는 것, list, tuple 등, iterator를 만드는 함수로 zip이 있음
+Constructor : 객체 생성시 기본 호출됨 init
