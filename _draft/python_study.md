@@ -45,3 +45,12 @@ parameter = arguments?
 Generator : Iterator를 생성해줌
 Iterator : 값을 차례대로 꺼낼 수 있는 것, list, tuple 등, iterator를 만드는 함수로 zip이 있음
 Constructor : 객체 생성시 기본 호출됨 init
+
+Duck typing
+어떤 새가 오리처럼 걷고 꽥꽥 거린다면 그 새를 오리라고 부를 것이다
+Python이 자료형을 정하는 방식 = 동적 타입 = interpretation
+
+파이썬은 한 줄씩 기계어로 번역 (= 컴파일)
+C는 문서를 통채로 번역
+
+
