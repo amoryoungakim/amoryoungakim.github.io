@@ -100,6 +100,7 @@ print(C[0, 0::2, 3::-2])
 [[ 3  1]
  [11  9]]
 ```
+
 ### 차원 변경하기
 ```python
 np.reshape(a, b)  # 길이가 12인 1차원 배열을 3x4로 바꾸려면 (3,4)로 지정하거나 (3,-1)로 지정
@@ -144,6 +145,21 @@ inds = np.array([3, 7, 8, 12])
 print(x[inds])
 ```
 
+### Linear Algebra
+
+```python
+import numpy as np
+
+A = [[4, 6, 2],
+     [3, 4, 1],
+     [2, 8, 13]]
+s = [9, 7, 2]
+
+Ainv = np.linalg.inv(A)
+
+# Ar = s 일 때 r 구하기
+r = np.linalg.solve(A, s)
+```
 
 
 ### 딕셔너리를 생성하는 여러가지 방법
