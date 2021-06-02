@@ -120,22 +120,34 @@ np.min()
 np.max()
 np.sum()  # 모든 요소를 다 더한 결과
 np.mean()
+np.var()
 np.std()
 np.abs()
 np.maximum(A, B)  # A,B의 각 요소중 큰것만 뽑아줌
 np.sum(A, axis=0)  # A가 [m, n, k] 행렬일 때 axis=0 요소를 없애는 방향으로 더함, 즉, [n, k]가 리턴되도록 더함
 np.unique(A)  # unique한 값을 리턴
 np.bincount(A)  # 오름차순으로 정렬 후 빈도를 계산해서 반환
-np.argmax(A)  # 각 차원별 최대값 반환
+np.argmax(A, axis=0)  # 각 차원별 최대값의 index를 반환 axis=0이면 row끼리 비교, axis=1이면 column끼리 
+np.argmin(A, axis=0)  # 각 차원별 최소값의 index를 반환
+```
+
+### 값 비교하기
+
+```python
+A > 0  # 조건에 대한 결과를 True, False로 반환
+np.sum(A > 0)  # 조건을 만족하는 True의 개수
+np.any(A > 0)  # 조건을 만족하는 값이 하나라도 있으면 True, 없으면 False
+np.all(A > 0)  # 배열의 모든 요소가 조건을 만족해야 True, 아니면 False
+A > B  # 배열의 각 원소를 비교해 True, False로 반환
+A = B  # 두 배열이 같으면 True, 다르면 False
+np.where(A > 0)  # 조건을 만족하는 요소만 반환
+np.where(A > 0, 1, -1)  # 요소가 0보다 크면 1로 반환, 작으면 -1로 반환
 ```
 
 ### array 연산
 
 ```python
 A + 3    # 각 요소에 3을 더함
-
-
-
 ```
 
 ### array를 index로 지정해서 array 슬라이싱 하기
@@ -160,7 +172,6 @@ Ainv = np.linalg.inv(A)
 # Ar = s 일 때 r 구하기
 r = np.linalg.solve(A, s)
 ```
-
 
 ### 딕셔너리를 생성하는 여러가지 방법
 
