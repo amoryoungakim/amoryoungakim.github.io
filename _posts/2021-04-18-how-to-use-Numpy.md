@@ -14,6 +14,8 @@ import numpy as np
 
 # 1차원 배열 생성
 A = np.array([1, 2, 3, 4])
+A = np.arange(4)  # [0,1,2,3]
+A = np.arange(1,10,2)  # [1,3,5,7,9]
 
 print(A.ndim)  # 몇 차원인가?
 print(A.shape) # 차원 별 요소의 개수
@@ -82,6 +84,10 @@ np.full((3, 4), 1)            # 값이 1(int)로 채워진 3x4 array
 ### Numpy 배열 슬라이싱
 
 ```python
+A[0]  # 1st row
+A[0, 1]  # 1st row의 2nd 요소
+A[:, 0]  # 1st column
+
 C = np.array([[[0, 1, 2, 3],
               [4, 5, 6, 7],
               [8, 9, 10, 11]],
@@ -109,8 +115,14 @@ np.reshape(a, b)  # 길이가 12인 1차원 배열을 3x4로 바꾸려면 (3,4)�
 ### 난수 생성하기
 
 ```python
+# 일정 범위 내의 정수 배열 생성
 np.random.randint(0, 20, 15)           # 0과 20 사이의 수 중 15개를 랜덤하게 생성
 np.random.randint(0, 20, size=(4,3))   # 0과 20 사이의 수 중 12개를 랜덤하게 생성해 4x3 배열로
+
+# 0,1 사이의 배열 생성
+np.random.rand(n)  # n개의 요소 랜덤하게 생성
+np.random.rand(n, m)  # n x m 배열 생성
+
 ```
 
 ### 간단한 통계 내기
@@ -148,6 +160,11 @@ np.where(A > 0, 1, -1)  # 요소가 0보다 크면 1로 반환, 작으면 -1로 
 
 ```python
 A + 3    # 각 요소에 3을 더함
+A + B
+A - B
+A * B
+A / B
+A**2
 ```
 
 ### array를 index로 지정해서 array 슬라이싱 하기
@@ -160,7 +177,8 @@ print(x[inds])
 ### Linear Algebra
 
 ```python
-import numpy as np
+import numpy as n
+from numpy import linalg
 
 A = [[4, 6, 2],
      [3, 4, 1],
@@ -168,9 +186,14 @@ A = [[4, 6, 2],
 s = [9, 7, 2]
 
 Ainv = np.linalg.inv(A)
-
 # Ar = s 일 때 r 구하기
 r = np.linalg.solve(A, s)
+
+A.T  # transpose
+np.dot(A, B)  # dot product
+A @ B  # matrix-matrix product, matrix-vector product
+linalg.det(A)  # determinant 구함
+eigenvalues, eigenvectors = linalg.eig(A)
 ```
 
 ### 딕셔너리를 생성하는 여러가지 방법
@@ -185,6 +208,11 @@ for i in [1,2,2,3,3,3,4,4,4,4]:
     num_dict[i] = 1
   
 ```
+
+Reference
+https://docs.scipy.org/doc/numpy/index.html
+https://docs.scipy.org/doc/numpy/reference/routines.html 
+
 
 
 
