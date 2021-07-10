@@ -79,6 +79,7 @@ np.eye(3)                     # 대각선 요소만 1(float)로 채워진 3x3 ar
 np.diag([1, 2, 3])            # 대각선 요소만 1, 2, 3(int)으로 채워진 3x3 array
 np.empty((3, 4))              # 무의미한 값으로 채운 3x4 array
 np.full((3, 4), 1)            # 값이 1(int)로 채워진 3x4 array
+np.zeros_lik(A)    # A와 같은 크기의 0으로 채워진 array
 ```
 
 ### Numpy 배열 슬라이싱
@@ -135,6 +136,7 @@ np.mean()
 np.var()
 np.std()
 np.abs()
+np.absolute()
 np.maximum(A, B)  # A,B의 각 요소중 큰것만 뽑아줌
 np.sum(A, axis=0)  # A가 [m, n, k] 행렬일 때 axis=0 요소를 없애는 방향으로 더함, 즉, [n, k]가 리턴되도록 더함
 np.unique(A)  # unique한 값을 리턴
@@ -190,10 +192,13 @@ Ainv = np.linalg.inv(A)
 r = np.linalg.solve(A, s)
 
 A.T  # transpose
+transpose(A)  # transpose
 np.dot(A, B)  # dot product
 A @ B  # matrix-matrix product, matrix-vector product
 linalg.det(A)  # determinant 구함
+linalg.norm(A)  # 벡터의 크기 구함
 eigenvalues, eigenvectors = linalg.eig(A)
+gaBasis(A)  # matrix of orthonormal column vectors 구함
 ```
 
 ### 딕셔너리를 생성하는 여러가지 방법
