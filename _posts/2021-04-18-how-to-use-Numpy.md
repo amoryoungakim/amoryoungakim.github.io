@@ -169,6 +169,14 @@ A / B
 A**2
 ```
 
+### array 정렬
+
+```python
+A = np.array([1, 3, 4, 2])
+s = A.argsort()  # array A의 값이 작은 순서대로 index를 기록 [0, 3, 1, 2]
+A[s]  # s에 따라 정렬됨
+```
+
 ### array를 index로 지정해서 array 슬라이싱 하기
 
 ```python
