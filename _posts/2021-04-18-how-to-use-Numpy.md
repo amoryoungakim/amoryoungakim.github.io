@@ -174,6 +174,7 @@ A**2
 ```python
 A = np.array([1, 3, 4, 2])
 s = A.argsort()  # array A의 값이 작은 순서대로 index를 기록 [0, 3, 1, 2]
+s1 = A.argsort()[::-1]  # 값이 큰 순서대로 index 기록
 A[s]  # s에 따라 정렬됨
 ```
 
