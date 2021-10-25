@@ -23,6 +23,10 @@ tf.matmul(a, b)  #matrix multiply
 a @ b
 ```
 
+```python
+x = tf.Variable(2.0, dtype=tf.float32, name='my_variable')
+```
+
 ### Tensor Shapes
 
 ```python
