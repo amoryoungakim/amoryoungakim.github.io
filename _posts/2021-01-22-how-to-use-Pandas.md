@@ -24,7 +24,19 @@ df.info()  #cardinality, dtype 확인 (df.dtypes 로도 확인 가능)
 df.describe()  #non-object type 변수들의 간단한 통계
 df.describe(include = "O")  #object type 변수들의 간단한 통계
 df.shape  #행, 열 개수
+df.size  #데이터 개수 5x2 이면 10
 df.columns
+```
+
+### 간단한 통계 내기
+
+```python
+len(df)  #행 개수
+df.count()  #null 제외한 행 개수
+len(df.columns)  #열 개수
+pd.unique(df['colA'])  #colA를 unique한 값만 가져오기
+len(pd.unique(df['colA']))  #colA의 unique한 값의 개수 세기
+df['colA'].value_counts(normalize=False, sort=True, ascending=False, dropna=True, bins=None)  #colA를 구성하는 값들이 총 몇 번 출현하는지 빈도 세기
 ```
 
 ### data 타입 변경
@@ -48,6 +60,17 @@ df.iloc[rows]
 
 cols = df.columns[:3].to_list() + ["columnA", "columnB"]
 df.loc[:, cols]
+```
+
+### 필터링
+
+```python
+df.loc[df['colA'] == 'A']  #colA 값이 A인 행만 보기
+df.loc[(df['colA'] == 'A') & (df['colB'] == 'B')]  #colA 값이 A이고 colB 값이 B인 행만 보기 (or 조건일 때는 | 사용)
+df.loc[df['colA'].str.contains('apple')]  #colA 값이 apple을 포함하는 행만 보기
+df.loc[df['colA'].str.startswith('A')]  #colA 값이 A로 시작하는 행만 보기
+df.loc[df['colA'].str.isnumber()]  #colA 값을 구성하는 string이 모두 숫자인 행만 보기, 예. "093482"
+df.loc[df['colA'].isin(['A', 'B', 'C']]  #colA 값이 A~C인 행만 보기
 ```
 
 ### 행,열 삭제하기
@@ -87,6 +110,7 @@ df = df[['columnB', 'columnA']]  #A,B 순서였던 것을 B,A로 변경
 
 ```python
 df.isnull().sum()  #missing value가 몇 개인지 알아보기
+df[df['colA'].isnull()]  #colA에 missing value가 있는 행만 가져오기
 
 df.dropna(axis=0, inplace=True)  #행을 삭제
 df.dropna(axis=1, inplace=True)  #열을 삭제
@@ -150,4 +174,26 @@ df.groupby('colA').agg({'colB':'count', 'colC':lambda row: ', '.join(row)})
 ```python
 df.sort_values(by = ['colA','colB'], axis = 0, ascending = True, inplace = True)
 df.sort_index(axis = 0, ascending = True, inplace = True)
+```
+
+### 값 변경하기
+
+```python
+df.loc[df['colA'] == 'A'] = 'AB'  #colA의 값 중 A를 AB로 변경
+df['colA'] = df['colA'].apply(lambda x: 1 if x=='A' else 0)  #colA의 값이 A면 1로 바꾸고 아니면 0으로 바꿈
+df['colA'] = df['colA'].apply(lambda x: 'alpha' if x=='A' else 'beta' if x=='B' else x)  #colA의 값이 A면 alpha로 바꾸고 B면 beta로 그외는 그냥 유지
+```
+
+### Index 변경
+
+```python
+df.set_index('colA')  #index를 colA로 변경
+df.reset_index()  #index를 0부터 순서대로 다시 매겨줌 (일부 행을 drop시킨 뒤 종종 사용)
+```
+
+### 기타 세팅값
+
+```python
+pd.set_option('display.max_row', 100)  #행을 최대 100개까지 표시
+pd.set_option('display.max_columns', 100)  #열을 최대 100개까지 
 ```
