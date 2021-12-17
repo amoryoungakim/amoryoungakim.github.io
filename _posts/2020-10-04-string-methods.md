@@ -45,8 +45,8 @@ s.isdigit() # 문자열이 숫자로 이루어져 있나?
 s.isnumeric() # isdigit()과 동일
 s.isdecimal() # 문자열이 10진수인가?
 s.isspace() # 문자열이 공백으로만 이루어져 있나?
-s.startswidth('a') # 문자열이 'a'로 시작하나?
-s.endswidth('a') # 문자열이 'a'로 끝나나?
+s.startswith('a') # 문자열이 'a'로 시작하나?
+s.endswith('a') # 문자열이 'a'로 끝나나?
 ```
 
 ### 문자열(string) 검색하기
