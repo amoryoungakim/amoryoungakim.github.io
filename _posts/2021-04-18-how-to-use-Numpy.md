@@ -199,7 +199,8 @@ gaBasis(A)  # matrix of orthonormal column vectors 구함
 ### Scipy
 
 ```python
-sparse.coo_matrix((v, (i, j)), shape=(n, n)).toarray()  # i,j좌표에 v에 해당하는 값을 넣은 array 생성, 같은 좌표에 여러 v가 있으면 자동으로 더해줌
+# i,j좌표에 v에 해당하는 값을 넣은 array 생성, 같은 좌표에 여러 v가 있으면 자동으로 더해줌
+sparse.coo_matrix((v, (i, j)), shape=(n, n)).toarray()  
 ```
 
 ### 딕셔너리를 생성하는 여러가지 방법
