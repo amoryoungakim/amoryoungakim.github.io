@@ -15,6 +15,14 @@ import pandas as pd
 df = pd.read_csv('파일경로/파일명.csv')
 ```
 
+### df 생성하기
+
+```python
+df = pd.DataFrame([[1,2,3], [4,5,6], [7,8,9]],
+                columns = ['a', 'b', 'c'],
+                index = ['A', 'B'])
+```
+
 ### data 구조 살피기
 
 ```python
@@ -33,10 +41,29 @@ df.columns
 ```python
 len(df)  #행 개수
 df.count()  #null 제외한 행 개수
+df.sum()
+df.mean()
+df.std()
+df.min()
+df.max()
 len(df.columns)  #열 개수
 pd.unique(df['colA'])  #colA를 unique한 값만 가져오기
 len(pd.unique(df['colA']))  #colA의 unique한 값의 개수 세기
 df['colA'].value_counts(normalize=False, sort=True, ascending=False, dropna=True, bins=None)  #colA를 구성하는 값들이 총 몇 번 출현하는지 빈도 세기
+```
+
+### 특정 열을 기준으로 그룹화 하기
+
+```python
+df.groupby('colA').mean()
+df.groupby(['colA', 'colB']).mean()
+
+# colA의 값을 기준으로 colB의 값을 그룹화하여 list로 만듦
+df.groupby('colA')['colB'].apply(list)
+
+# colB, colC, colD의 값을 각각 다른 조건으로 그룹화
+df.groupby('colA').agg({'colB':'sum' ,'colC':'count'}) 
+df.groupby('colA').agg({'colB':'count', 'colC':lambda row: ', '.join(row)}) 
 ```
 
 ### data 타입 변경
@@ -154,19 +181,6 @@ def splitCols(row):
 df = df.merge(df['AB'].apply(lambda x: pd.Series({'A':splitCols(x)[0], 'B':splitCols(x)[1]})), 
     left_index = True, right_index = True)  #join key로 양쪽의 index를 사용
 del df['AB']  #원본 열은 삭제
-```
-
-### 특정 열을 기준으로 그룹화 하기
-```python
-df.groupby('colA').mean()
-df.groupby(['colA', 'colB']).mean()
-
-# colA의 값을 기준으로 colB의 값을 그룹화하여 list로 만듦
-df.groupby('colA')['colB'].apply(list)
-
-# colB, colC, colD의 값을 각각 다른 조건으로 그룹화
-df.groupby('colA').agg({'colB':'sum' ,'colC':'count'}) 
-df.groupby('colA').agg({'colB':'count', 'colC':lambda row: ', '.join(row)}) 
 ```
 
 ### 값 정렬하기
