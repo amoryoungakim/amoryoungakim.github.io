@@ -97,6 +97,9 @@ np.random.randint(0, 20, size=(4,3))   # 0과 20 사이의 수 중 12개를 랜�
 np.random.rand(n)  # n개의 요소 랜덤하게 생성
 np.random.rand(n, m)  # n x m 배열 생성
 
+# normal distribution으로부터 난수 생성
+np.random.normal(mu, sigma, n)
+
 np.random.choice(A, k)  # A중에서 k개를 랜덤하게 선택
 ```
 
